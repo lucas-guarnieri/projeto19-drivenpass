@@ -19,6 +19,9 @@ model User {
   Credential Credential[]
   SecureNote SecureNote[]
   Card       Card[]
+  Wifi       Wifi[]
+  Document   Document[]
+
   @@map("users")
 }
 
@@ -69,17 +72,24 @@ model Wifi {
   title    String
   wifiName String
   password String
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
 
   @@map("wifis")
 }
 
 model Document {
-  id             Int          @id @default(autoincrement())
-  documentType   DOCUMENTTYPE
-  userName       String
-  dateEmission   DateTime     @db.Date
-  dateExpiration DateTime     @db.Date
+  id                Int          @id @default(autoincrement())
+  documentType      DOCUMENTTYPE
+  userName          String
+  dateEmission      DateTime     @db.Date
+  dateExpiration    DateTime     @db.Date ///TODO: test viability
+  documentNumber    Int
+  emiterInstitution String
+  userId            Int
+  user              User         @relation(fields: [userId], references: [id])
 
+  @@map("documents")
 }
 
 enum CARDTYPE {

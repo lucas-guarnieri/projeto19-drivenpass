@@ -1,0 +1,10 @@
+import userRepository from "../repositories/userRepository.js";
+
+async function existingUserEmail(email: string) {
+    const existingUser = await userRepository.findByEmail(email);
+    if (!existingUser) throw { type: "not_found", message: "user do not exists" }
+}
+
+export default {
+    existingUserEmail,
+}
