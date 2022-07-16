@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
 
 import userServices from "../services/userServices.js";
-import { CreateUserData } from "../services/userServices.js";
+import authUtils from "../utils/authUtils.js";
+import { CreateUserData, LoginData } from "../services/userServices.js";
+
 
 export async function createUser(req: Request, res: Response) {
     const { name, email, password } = req.body;
-    const passwordHash = bcrypt.hashSync(password, 10);
-
+    const passwordHash = await authUtils.passwordEncryption(password);
     const userData: CreateUserData = {
         name,
         email,
@@ -16,4 +16,12 @@ export async function createUser(req: Request, res: Response) {
     await userServices.insertUser(userData);
     res.sendStatus(201);
 }
+
+export async function login(req: Request, res: Response) {
+    const loginData: LoginData = req.body;
+    const token = await userServices.userLogin(loginData);
+    res.status(200).send(token);
+}
+
+
 
