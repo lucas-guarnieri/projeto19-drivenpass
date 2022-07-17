@@ -34,11 +34,15 @@ function textDesencryption(encryptedText: string) {
     return text;
 }
 
+function checkObejtctAuthor(objId: number, userId: number) {
+    if (objId !== userId) throw { type: "unauthorized", message: "credential does not belong to user" }
+}
+
 export default {
     passwordEncryption,
     validatePassword,
     setToken,
     textEncryption,
-    textDesencryption
-
+    textDesencryption,
+    checkObejtctAuthor
 }
