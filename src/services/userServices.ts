@@ -1,6 +1,3 @@
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-
 import { User } from "@prisma/client";
 import userRepository from "../repositories/userRepository.js"
 import userUtils from "../utils/userUtils.js";
