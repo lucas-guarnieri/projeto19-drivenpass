@@ -27,7 +27,6 @@ export async function getUserCredential(req: Request, res: Response) {
         const credential = await credentialServices.getCredential(credentialId, userId);
         res.status(200).send(credential);
     }
-
     const credentials = await credentialServices.getCredentials(userId);
     res.status(200).send(credentials);
 }

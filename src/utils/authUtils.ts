@@ -35,7 +35,7 @@ function textDesencryption(encryptedText: string) {
 }
 
 function checkObejtctAuthor(objId: number, userId: number) {
-    if (objId !== userId) throw { type: "unauthorized", message: "credential does not belong to user" }
+    if (objId !== userId) throw { type: "unauthorized", message: "does not belong to user" }
 }
 
 export default {
