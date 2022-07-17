@@ -27,7 +27,7 @@ async function getNotes(userId: number) {
 async function deleteNote(noteId: number, userId: number) {
     const note = await getNoteById(noteId);
     authUtils.checkObejtctAuthor(note.userId, userId);
-    await secureNotesRepository.deleteById(noteId);
+    await secureNotesRepository.deleteById(note.id);
 }
 
 async function getNoteById(noteId: number) {

@@ -11,6 +11,4 @@ credentialRouter.post("/credential", validateSchemaMiddleware(credentialSchema),
 credentialRouter.get("/credential", validateToken, getUserCredential);//query ?id=credentialId for single credential
 credentialRouter.delete("/credential/:id", validateToken, deleteCredential);
 
-
-
 export default credentialRouter;

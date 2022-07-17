@@ -10,7 +10,9 @@ async function insertCredential(newCredential: CreateCredential) {
         newCredential.userId
     );
     if (existingCredential) throw { type: "conflict", message: "credential title already in use" };
-    await credentialsRepository.insert(newCredential);
+    const encryptedPassword = authUtils.textEncryption(newCredential.userPassword);
+    const securedCredential: CreateCredential = { ...newCredential, userPassword: encryptedPassword };
+    await credentialsRepository.insert(securedCredential);
 }
 
 async function getCredential(credentialId: number, userId: number) {
@@ -27,7 +29,7 @@ async function getCredentials(userId: number) {
         credentials.forEach((credential) => {
             const aux = { ...credential, userPassword: authUtils.textDesencryption(credential.userPassword) };
             desencryptedCredentials.push(aux);
-        })
+        });
         return desencryptedCredentials;
     }
     return credentials;

@@ -55,7 +55,7 @@ model Card {
   id             Int      @id @default(autoincrement())
   title          String
   cardType       CARDTYPE
-  cardNumber     Int
+  cardNumber     String
   printedName    String
   cvv            String
   password       String

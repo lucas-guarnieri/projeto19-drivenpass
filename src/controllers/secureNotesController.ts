@@ -21,7 +21,7 @@ export async function getUserNote(req: Request, res: Response) {
     const noteId = parseInt(noteQuery);
     if (noteQuery) {
         const note = await secureNotesServices.getNote(noteId, userId);
-        res.status(200).send(note);
+        return res.status(200).send(note);
     }
     const notes = await secureNotesServices.getNotes(userId);
     res.status(200).send(notes);
