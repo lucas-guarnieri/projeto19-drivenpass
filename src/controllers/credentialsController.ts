@@ -12,7 +12,7 @@ export async function createCredential(req: Request, res: Response) {
         userName,
         userPassword,
         userId
-    }
+    };
     await credentialServices.insertCredential(newCredential);
     res.sendStatus(201);
 }
