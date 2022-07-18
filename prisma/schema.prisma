@@ -83,13 +83,14 @@ model Document {
   id                Int          @id @default(autoincrement())
   documentType      DOCUMENTTYPE
   userName          String
-  dateEmission      DateTime     @db.Date
-  dateExpiration    DateTime     @db.Date ///TODO: test viability
-  documentNumber    Int
+  dateEmission      String
+  dateExpiration    String
+  documentNumber    String
   emiterInstitution String
   userId            Int
   user              User         @relation(fields: [userId], references: [id])
 
+  @@unique([userId, documentType])
   @@map("documents")
 }
 

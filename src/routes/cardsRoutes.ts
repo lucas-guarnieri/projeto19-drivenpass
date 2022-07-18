@@ -5,7 +5,6 @@ import { validateSchemaMiddleware } from "../middlewares/validateSchema.js";
 import { validateToken } from "../middlewares/authMiddleware.js";
 import { cardSchema } from "../schemas/cardSchema.js";
 
-
 const cardRouter = Router();
 
 cardRouter.post("/card", validateSchemaMiddleware(cardSchema), validateToken, createCard);
